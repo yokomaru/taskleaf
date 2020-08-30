@@ -1,7 +1,7 @@
 - if user.errors.present?
-  ul #error_explanation
+  ul#error_explanation
     - user.errors.full_messages.each do |message|
-      li =message
+      li= message
 
 = form_with model: [:admin, @user], local: true do |f|
   .form-group
