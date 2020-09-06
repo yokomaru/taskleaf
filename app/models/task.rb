@@ -7,6 +7,15 @@ class Task < ApplicationRecord
 
   scope :recent, -> {order(created_at: :desc)}
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[name created_at]
+  end
+
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[name created_at]
+  end
+
   private
   def validate_name_not_including_conma
     errors.add(:name, 'にコンマを含めるな') if name&.include?(',')
