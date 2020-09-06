@@ -17,7 +17,13 @@ class TasksController < ApplicationController
   def create
     @task = current_user.tasks.new(task_params)
 
+    if params[:back].present?
+      render :new
+      return
+    end
+
     if @task.save
+      logger.debug "task: #{@task.attributes.inspect}"
       redirect_to tasks_url, notice: "タスク「#{@task.name}」を登録しまし〜た"
     else
       render :new
@@ -32,6 +38,15 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     redirect_to tasks_url, notice: "タスク「#{task.name}」を削除しまし〜た"
+  end
+
+  def task_logger
+    @task_logger ||= Logger.new('log/task.log', 'daily')
+  end
+
+  def confirm_new
+    @task = current_user.tasks.new(task_params)
+    render :new unless @task.valid?
   end
 
   private
