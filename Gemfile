@@ -63,3 +63,5 @@ gem 'rails-i18n'
 gem 'rails_autolink'
 gem 'ransack'
 gem 'kaminari'
+
+gem 'sidekiq', '~> 5.0'
