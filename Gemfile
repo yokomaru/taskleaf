@@ -65,3 +65,4 @@ gem 'ransack'
 gem 'kaminari'
 
 gem 'sidekiq', '~> 5.0'
+gem 'webpacker', '~> 4.0'
